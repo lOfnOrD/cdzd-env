@@ -6,7 +6,17 @@ echo Provisioning VM...
 echo Installing dependencies...
 apt-get update
 apt-get -qy install git openjdk-7-jdk sshpass unzip
+echo Installing Jenkins...
 wget -O /home/vagrant/jenkins.war http://mirrors.jenkins-ci.org/war/latest/jenkins.war
+mkdir -p .jenkins/plugins
+wget -O /home/vagrant/.jenkins/plugins/git-client.hpi https://updates.jenkins-ci.org/download/plugins/git-client/1.6.3/git-client.hpi
+wget -O /home/vagrant/.jenkins/plugins/git.hpi https://updates.jenkins-ci.org/download/plugins/git/2.0.3/git.hpi
+wget -O /home/vagrant/.jenkins/plugins/scm-api.hpi https://updates.jenkins-ci.org/download/plugins/scm-api/0.2/scm-api.hpi
+wget -O /home/vagrant/.jenkins/plugins/ws-cleanup.hpi https://updates.jenkins-ci.org/download/plugins/ws-cleanup/0.20/ws-cleanup.hpi
+wget -O /home/vagrant/.jenkins/plugins/token-macro.hpi https://updates.jenkins-ci.org/download/plugins/token-macro/1.10/token-macro.hpi
+wget -O /home/vagrant/.jenkins/plugins/config-file-provider.hpi http://mirrors.xmission.com/hudson/plugins/config-file-provider/2.7.1/config-file-provider.hpi
+chown -R vagrant:vagrant /home/vagrant/.jenkins
+echo Installing Artifactory...
 wget -O /home/vagrant/artifactory.zip http://bit.ly/Hqv9aj
 unzip /home/vagrant/artifactory.zip
 chown -R vagrant:vagrant /home/vagrant/artifactory-*
