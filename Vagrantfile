@@ -69,7 +69,7 @@ Vagrant.configure("2") do |config|
   config.vm.box = "ubuntu/trusty64"
 
   config.vm.define "ci" do |ci|
-    ci.vm.hostname = "cdzero2hero-ci"
+    ci.vm.hostname = "cdzd-ci"
     ci.vm.provision :shell, :inline => $script_ci
     ci.vm.network "forwarded_port", guest: 22, host: 8022
     ci.vm.network "forwarded_port", guest: 8080, host: 8080
@@ -84,7 +84,7 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.define "lb" do |lb|
-    lb.vm.hostname = "cdzero2hero-lb"
+    lb.vm.hostname = "cdzd-lb"
     lb.vm.provision :shell, :inline => $script_lb
     lb.vm.network "forwarded_port", guest: 9000, host: 9000
     lb.vm.provider "virtualbox" do |vm|
@@ -96,7 +96,7 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.define "app1" do |app1|
-    app1.vm.hostname = "cdzero2hero-app1"
+    app1.vm.hostname = "cdzd-app1"
     app1.vm.provision :shell, :inline => $script_app
     app1.vm.network "forwarded_port", guest: 22,   host: 9111
     app1.vm.network "forwarded_port", guest: 9100, host: 9101
@@ -109,7 +109,7 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.define "app2" do |app2|
-    app2.vm.hostname = "cdzero2hero-app2"
+    app2.vm.hostname = "cdzd-app2"
     app2.vm.provision :shell, :inline => $script_app
     app2.vm.network "forwarded_port", guest: 22,   host: 9112
     app2.vm.network "forwarded_port", guest: 9100, host: 9102
@@ -122,7 +122,7 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.define "db" do |db|
-    db.vm.hostname = "cdzero2hero-db"
+    db.vm.hostname = "cdzd-db"
     db.vm.provision :shell, :inline => $script_db
     db.vm.network "forwarded_port", guest: 9200, host: 9200
     db.vm.provider "virtualbox" do |vm|
