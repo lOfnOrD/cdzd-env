@@ -9,12 +9,12 @@ apt-get -qy install git openjdk-7-jdk sshpass unzip
 echo Installing Jenkins...
 wget -O /home/vagrant/jenkins.war http://mirrors.jenkins-ci.org/war/latest/jenkins.war
 mkdir -p .jenkins/plugins
-wget -O /home/vagrant/.jenkins/plugins/git-client.hpi https://updates.jenkins-ci.org/download/plugins/git-client/1.6.3/git-client.hpi
-wget -O /home/vagrant/.jenkins/plugins/git.hpi https://updates.jenkins-ci.org/download/plugins/git/2.0.3/git.hpi
+wget -O /home/vagrant/.jenkins/plugins/git-client.hpi https://updates.jenkins-ci.org/download/plugins/git-client/1.11.1/git-client.hpi
+wget -O /home/vagrant/.jenkins/plugins/git.hpi https://updates.jenkins-ci.org/download/plugins/git/2.3/git.hpi
 wget -O /home/vagrant/.jenkins/plugins/scm-api.hpi https://updates.jenkins-ci.org/download/plugins/scm-api/0.2/scm-api.hpi
-wget -O /home/vagrant/.jenkins/plugins/ws-cleanup.hpi https://updates.jenkins-ci.org/download/plugins/ws-cleanup/0.20/ws-cleanup.hpi
+wget -O /home/vagrant/.jenkins/plugins/ws-cleanup.hpi https://updates.jenkins-ci.org/download/plugins/ws-cleanup/0.24/ws-cleanup.hpi
 wget -O /home/vagrant/.jenkins/plugins/token-macro.hpi https://updates.jenkins-ci.org/download/plugins/token-macro/1.10/token-macro.hpi
-wget -O /home/vagrant/.jenkins/plugins/config-file-provider.hpi http://mirrors.xmission.com/hudson/plugins/config-file-provider/2.7.1/config-file-provider.hpi
+wget -O /home/vagrant/.jenkins/plugins/config-file-provider.hpi http://mirrors.xmission.com/hudson/plugins/config-file-provider/2.7.5/config-file-provider.hpi
 chown -R vagrant:vagrant /home/vagrant/.jenkins
 echo Installing Artifactory...
 wget -O /home/vagrant/artifactory.zip http://bit.ly/Hqv9aj
@@ -61,13 +61,12 @@ echo Provisioning VM...
 echo Installing dependencies...
 apt-get update
 apt-get -qy install openjdk-7-jre-headless
-wget -O /home/vagrant/hsqldb.jar http://search.maven.org/remotecontent?filepath=org/hsqldb/hsqldb/2.3.1/hsqldb-2.3.1.jar
+wget -O /home/vagrant/hsqldb.jar http://search.maven.org/remotecontent?filepath=org/hsqldb/hsqldb/2.3.2/hsqldb-2.3.2.jar
 echo Done.
 SCRIPT
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "saucy-server-cloudimg-amd64"
-  config.vm.box_url = "http://cloud-images.ubuntu.com/vagrant/saucy/current/saucy-server-cloudimg-amd64-vagrant-disk1.box"
+  config.vm.box = "ubuntu/trusty64"
 
   config.vm.define "ci" do |ci|
     ci.vm.hostname = "cdzero2hero-ci"
