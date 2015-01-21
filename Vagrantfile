@@ -62,6 +62,8 @@ echo Installing dependencies...
 apt-get update
 apt-get -qy install openjdk-7-jre-headless
 wget -O /home/vagrant/hsqldb.jar http://search.maven.org/remotecontent?filepath=org/hsqldb/hsqldb/2.3.2/hsqldb-2.3.2.jar
+echo "nohup java -cp hsqldb.jar org.hsqldb.Server -port 9200 --database.0 file:~/local --dbname.0 local --database.1 file:~/test-local --dbname.1 test-local --database.2 file:~/test-ci --dbname.2 test-ci --database.3 file:~/prod --dbname.3 prod &" > /home/vagrant/startDB.sh
+chmod 777 /home/vagrant/startDB.sh
 echo Done.
 SCRIPT
 
